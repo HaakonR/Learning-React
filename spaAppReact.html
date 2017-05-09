@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>REACT!</title>
+        <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script> 
+        <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+        <script src="https://npmcdn.com/react-router@2.4.0/umd/ReactRouter.min.js"></script>
+
+        <style>
+            body {
+                background-color: #FFCC00;
+                padding: 20px;
+                margin: 0;
+            }
+            h1, h2, h3, p, ul, li {
+                font-family: Helvetica, Arial, sans-serif;
+            }
+            ul.header li { 
+                display: inline; 
+                list-style-type: none;
+                margin: 0; 
+            } 
+            ul.header { 
+                background-color: #111;
+                padding: 0; 
+            } 
+            ul.header li a {
+                color: #FFF; 
+                font-weight: bold; 
+                text-decoration : none; 
+                padding: 20px;
+                display: inline-block; 
+            } 
+            .content { 
+                background-color: #FFF; 
+                padding : 20px; 
+            }
+            .content h2 { 
+                padding: 0;
+                margin: 0; 
+            }
+            .content li {
+                margin-bottom: 10px;
+            }
+            .active {
+                background-color : #0099FF; 
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container"></div>
+        <script type="text/babel">
+var { Router,
+     Route,
+     IndexRoute,
+     IndexLink,
+     Link } = ReactRouter;
+
+var destination = document.querySelector("#container");
+
+var Home = React.createClass({
+    render: function() {
+        return (
+            <div>
+                <h2>HEI!</h2>
+                <h3>Fylltekst</h3>
+                <p>"Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?"</p>
+                <p>"Hodor! Hodor hodor, HODOR hodor, hodor hodor… Hodor hodor hodor hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor… Hodor hodor hodor?!"</p>
+                
+            </div>
+        );
+    }
+});
+
+var Kontakt = React.createClass({
+    render: function() {
+        return (
+            <div>
+                <h2>GOT QUESTIONS?</h2>
+                <p>"Hodor! Hodor hodor, HODOR hodor, hodor hodor… Hodor hodor hodor hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor… Hodor hodor hodor?!"</p>
+            </div>
+        );
+    }
+});
+
+var Om = React.createClass({
+    render: function() {
+        return (
+            <div>
+                <h2>OM</h2>
+                <p>"Hodor! Hodor hodor, HODOR hodor, hodor hodor… Hodor hodor hodor hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor… Hodor hodor hodor?!"</p>
+                <ol> 
+                    <li>Nulla pulvinar diam</li> <li>Facilisis bibendum</li> <li>Vestibulum vulputate</li> 
+                    <li>Eget erat</li> 
+                    <li>Id porttitor</li>
+            </ol>
+            </div>
+        );
+    }
+});
+
+
+var App = React.createClass({
+    render: function() {
+        return (
+            <div>
+                <h1>Enkel SPA-Learning REACT</h1>
+                <ul className="header">
+                    <li><IndexLink to="/" activeClassName="active">Hjem</IndexLink></li>
+                    <li><Link to="/om" activeClassName="active">Om</Link></li>
+                    <li><Link to="/kontakt" activeClassName="active">Kontakt</Link></li>
+            </ul>
+                <div className="content">
+                    {this.props.children}
+            </div>
+            </div>
+        )
+    }
+});
+
+ReactDOM.render(
+    <Router>
+        <Route path="/" component={App}>
+            <IndexRoute component={Home}/>
+            <Route path="om" component={Om}/>
+            <Route path="kontakt" component={Kontakt}/>
+            </Route>
+            </Router>,
+    destination
+);
+        </script>
+
+    </body>
+</html>
